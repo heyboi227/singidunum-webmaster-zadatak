@@ -2,6 +2,7 @@ import IConfig from "./common/IConfig.interface";
 import UserRouter from "./components/user/UserRouter.router";
 import { readFileSync } from "fs";
 import "dotenv/config";
+import FileRouter from "./components/file/FileRouter.router";
 
 const DevConfig: IConfig = {
   server: {
@@ -32,7 +33,7 @@ const DevConfig: IConfig = {
     timezone: "+01:00",
     supportBigNumbers: true,
   },
-  routers: [new UserRouter()],
+  routers: [new FileRouter(), new UserRouter()],
   auth: {
     user: {
       algorithm: "RS256",
@@ -55,6 +56,16 @@ const DevConfig: IConfig = {
       },
     },
     allowAllRoutesWithoutAuthTokens: false,
+  },
+  fileUploads: {
+    maxFiles: 5,
+    maxFileSize: 500 * 1024 * 1024,
+    temporaryFileDirectory: "../temp/",
+    destinationDirectoryRoot: "uploads/",
+    files: {
+      allowedTypes: ["PDF", "DOCX", "ZIP"],
+      allowedExtensions: [".pdf", ".docx", ".zip"],
+    },
   },
 };
 

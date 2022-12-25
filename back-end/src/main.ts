@@ -7,6 +7,7 @@ import * as morgan from "morgan";
 import IApplicationResources from "./common/IApplicationResources.interface";
 import * as mysql2 from "mysql2/promise";
 import UserService from "./components/user/UserService.service";
+import FileService from "./components/file/FileService.service";
 
 async function main() {
   const config: IConfig = DevConfig;
@@ -52,10 +53,12 @@ async function main() {
   const applicationResources: IApplicationResources = {
     databaseConnection: db,
     services: {
+      file: null,
       user: null,
     },
   };
 
+  applicationResources.services.file = new FileService(applicationResources);
   applicationResources.services.user = new UserService(applicationResources);
 
   const application: express.Application = express();
