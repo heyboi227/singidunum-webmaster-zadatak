@@ -5,7 +5,7 @@ import { DevConfig } from "../configs";
 
 export default class AuthMiddleware {
   public static getVerifier(
-    ...allowedRoles: ("user" | "activeUser" | "administrator")[]
+    ...allowedRoles: "user"[]
   ): (req: Request, res: Response, next: NextFunction) => void {
     return (req: Request, res: Response, next: NextFunction) => {
       this.verifyAuthToken(req, res, next, allowedRoles);
@@ -16,7 +16,7 @@ export default class AuthMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-    allowedRoles: ("user" | "activeUser" | "administrator")[]
+    allowedRoles: "user"[]
   ) {
     if (DevConfig.auth.allowAllRoutesWithoutAuthTokens) {
       return next();
@@ -54,7 +54,7 @@ export default class AuthMiddleware {
 
   public static validateTokenAs(
     tokenString: string,
-    role: "user" | "activeUser" | "administrator",
+    role: "user",
     type: "auth" | "refresh"
   ): ITokenData {
     if (tokenString === "") {
