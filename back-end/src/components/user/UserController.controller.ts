@@ -4,7 +4,7 @@ import {
   RegisterUserValidator,
   IRegisterUserDto,
 } from "./dto/IRegisterUser.dto";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcryptjs";
 import { DevConfig } from "../../configs";
 import { DefaultUserAdapterOptions } from "./UserService.service";
 import IEditUser, {
@@ -13,21 +13,6 @@ import IEditUser, {
 } from "./dto/IEditUser.dto";
 
 export default class UserController extends BaseController {
-  getAll(_req: Request, res: Response) {
-    this.services.user
-      .getAll({
-        removePassword: true,
-      })
-      .then((result) => {
-        res.send(result);
-      })
-      .catch((error) => {
-        setTimeout(() => {
-          res.status(500).send(error?.message);
-        }, 500);
-      });
-  }
-
   getById(req: Request, res: Response) {
     const id: number = +req.params?.uid;
 
@@ -168,6 +153,10 @@ export default class UserController extends BaseController {
   deactivate(req: Request, res: Response) {
     const id: number = +req.params?.uid;
 
+    if (req.authorization?.id !== id) {
+      return res.status(403).send("You do not have access to this resource!");
+    }
+
     this.services.user.startTransaction().then(() => {
       this.services.user
         .getById(id, DefaultUserAdapterOptions)
@@ -190,42 +179,6 @@ export default class UserController extends BaseController {
             .then(async () => {
               await this.services.user.commitChanges();
               res.send("This user has been deactivated!");
-            })
-            .catch((error) => {
-              throw {
-                status: 500,
-                message: error?.message,
-              };
-            });
-        })
-        .catch(async (error) => {
-          await this.services.user.rollbackChanges();
-          setTimeout(() => {
-            res.status(error?.status ?? 500).send(error?.message);
-          }, 500);
-        });
-    });
-  }
-
-  delete(req: Request, res: Response) {
-    const id: number = +req.params?.uid;
-
-    this.services.user.startTransaction().then(() => {
-      this.services.user
-        .getById(id, DefaultUserAdapterOptions)
-        .then((result) => {
-          if (result === null) {
-            throw {
-              status: 404,
-              message: "The user is not found!",
-            };
-          }
-
-          this.services.user
-            .deleteById(id)
-            .then(async (_result) => {
-              await this.services.user.commitChanges();
-              res.send("This user has been deleted!");
             })
             .catch((error) => {
               throw {
