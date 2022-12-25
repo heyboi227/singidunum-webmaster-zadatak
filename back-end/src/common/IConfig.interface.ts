@@ -46,14 +46,11 @@ interface IConfig {
     supportBigNumbers: boolean;
   };
   fileUploads: {
-    photos: any;
     maxFiles: number;
     maxFileSize: number;
     temporaryFileDirectory: string;
     destinationDirectoryRoot: string;
     files: {
-      width: any;
-      height: any;
       allowedTypes: string[];
       allowedExtensions: string[];
     };

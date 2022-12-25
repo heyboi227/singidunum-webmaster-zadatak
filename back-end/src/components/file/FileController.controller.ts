@@ -178,7 +178,7 @@ export default class FileController extends BaseController {
     if (!req.files || Object.keys(req.files).length === 0)
       throw {
         code: 400,
-        message: "No file were uploaded!",
+        message: "No files were uploaded!",
       };
 
     const fileFieldNames = Object.keys(req.files);
