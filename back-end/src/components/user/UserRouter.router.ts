@@ -28,24 +28,11 @@ class UserRouter implements IRouter {
       AuthMiddleware.getVerifier("user", "activeUser", "administrator"),
       userController.getByUsername.bind(userController)
     );
-    application.get(
-      "/api/user/email/:uemail",
-      AuthMiddleware.getVerifier("user", "activeUser", "administrator"),
-      userController.getByEmail.bind(userController)
-    );
-    application.post("/api/user", userController.add.bind(userController));
+    application.post("/api/user", userController.register.bind(userController));
     application.put(
       "/api/user/:uid",
       AuthMiddleware.getVerifier("user", "activeUser", "administrator"),
       userController.edit.bind(userController)
-    );
-    application.post(
-      "/api/user/reset-password",
-      userController.passwordResetEmailSend.bind(userController)
-    );
-    application.get(
-      "/api/user/reset/:code",
-      userController.resetPassword.bind(userController)
     );
     application.put(
       "/api/user/deactivate/:uid",
@@ -56,10 +43,6 @@ class UserRouter implements IRouter {
       "/api/user/:uid",
       AuthMiddleware.getVerifier("administrator"),
       userController.delete.bind(userController)
-    );
-    application.get(
-      "/api/user/activate/:ucode",
-      userController.activate.bind(userController)
     );
   }
 }
