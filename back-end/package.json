@@ -19,7 +19,7 @@
     "@types/express-fileupload": "^1.4.1",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/morgan": "^1.9.4",
-    "@types/node": "^18.15.11",
+    "@types/node": "^18.16.0",
     "@types/nodemailer": "^6.4.7",
     "@types/uuid": "^9.0.1",
     "rimraf": "^4.4.1",
