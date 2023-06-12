@@ -40,7 +40,7 @@
     "jsonwebtoken": "^9.0.0",
     "magic-bytes.js": "^1.0.14",
     "morgan": "^1.10.0",
-    "mysql2": "^3.2.0",
+    "mysql2": "^3.3.4",
     "nodemailer": "^6.9.1",
     "uuid": "^9.0.0"
   }
