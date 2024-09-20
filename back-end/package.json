@@ -20,7 +20,7 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/morgan": "^1.9.4",
     "@types/node": "^22.5.5",
-    "@types/nodemailer": "^6.4.7",
+    "@types/nodemailer": "^6.4.16",
     "@types/uuid": "^9.0.1",
     "rimraf": "^6.0.1",
     "ts-node-dev": "^2.0.0",
@@ -41,7 +41,7 @@
     "magic-bytes.js": "^1.0.14",
     "morgan": "^1.10.0",
     "mysql2": "^3.11.3",
-    "nodemailer": "^6.9.9",
+    "nodemailer": "^6.9.15",
     "uuid": "^9.0.0"
   }
 }
