@@ -33,7 +33,7 @@
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.0.1",
+    "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "express-fileupload": "^1.5.2",
     "generate-password": "^1.7.1",
