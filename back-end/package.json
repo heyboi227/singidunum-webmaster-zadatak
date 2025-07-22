@@ -12,7 +12,7 @@
   "author": "Miloš Jeknić <milos.jeknic.18@singimail.rs>",
   "license": "ISC",
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
+    "@types/bcrypt": "^6.0.0",
     "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
